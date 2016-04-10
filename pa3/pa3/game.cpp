@@ -37,6 +37,7 @@ game::game(string wordfile) {
  * Input: none
  * Output: none
  */
+void pause_237(bool);
 void game::take_turn() {
 	board.draw(cout);
 	// Display score, misses, words found so far
@@ -114,7 +115,7 @@ bool game::is_ended() const {
 void game::game_over() const {
 	cout << "Thanks for playing!" << endl;
 	cout << "Score: " << score << endl;
-	pause_237();
+	pause_237(true);
 }
 /*
  * word_in_list() - check if the word is a real word
