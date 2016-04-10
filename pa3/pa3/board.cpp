@@ -1,6 +1,7 @@
 #include "board.h"
 #include "letters.h"
 #include "position.h"
+#include <vector>
 
 /*
  * Default constructor for Board
@@ -133,7 +134,7 @@ bool Board::word_search(const string &target, int tfrom, Position p) const
 		return false;
 	}
 	else {
-		if (tfrom + 1 == target.length()) {
+		if (tfrom + 1 >= target.length()) {
 			return true;
 		}
 	}
@@ -159,16 +160,19 @@ bool Board::word_search(const string &target, int tfrom, Position p) const
  */
 list<Position> Board::adjacent(Position p) const {
 	list<Position> positions;
-	for (int i = -1; i <= 1; i = i + 2) {
-		for (int j = -1; j <= 1; j = j + 2) {
-			int new_x = p.x() + i;
-			int new_y = p.y() + j;
-			// Valid Position ?
-			if (new_x >= 0 && new_x < BOARD_SIZE &&
-				new_y >= 0 && new_y < BOARD_SIZE) {
-				positions.push_front(Position(new_x, new_y));
+	for (int i = -1; i <= 1; i++) {
+		for (int j = -1; j <= 1; j++) {
+			if (!(i == 0 && j == 0)) {
+				int new_x = p.x() + i;
+				int new_y = p.y() + j;
+				if (new_x >= 0 && new_x < BOARD_SIZE &&
+					new_y >= 0 && new_y < BOARD_SIZE) {
+					positions.push_back(Position(new_x, new_y));
+				}
 			}
+			
 		}
 	}
+
 	return positions;
 }

@@ -1,6 +1,7 @@
 #include "game.h"
 #include "board.h"
 #include "wordlist.h"
+#include "letters.h"
 #include <list>
 #include <string>	
 
@@ -44,11 +45,12 @@ void game::take_turn() {
 	cout << "Current score: " << score << endl;
 	cout << "Misses: " << misses << "/" << NUM_TRIES << endl;
 	if (score > 0) {
-		cout << "Found words:" << endl;
+		cout << "Found words:";
 		list<string>::iterator curr;
 		for (curr = usedwords.begin(); curr != usedwords.end(); ++curr) {
-			cout << *curr << endl;
+			cout << *curr << " ";
 		}
+		cout << endl;
 	}
 
 	cout << "Enter 'q' to quit." << endl;
@@ -59,10 +61,7 @@ void game::take_turn() {
 		misses = NUM_TRIES;
 	}
 	else {
-		for (int i = 0; input[i] != 0; i++) {
-			if (input[i] <= 122 && input[i] >= 97)
-				input[i] -= 32;
-		}
+		input = uppercase(input);
 		if (!word_in_list(input)) {
 			cout << "That's not a word!" << endl;
 			misses++;
@@ -77,7 +76,8 @@ void game::take_turn() {
 		}
 		else {
 			cout << "Correct!" << endl;
-			score = score + input.length() ^ 2;
+			score = score + input.length() * input.length();
+			usedwords.push_back(input);
 		}
 	}
 }
