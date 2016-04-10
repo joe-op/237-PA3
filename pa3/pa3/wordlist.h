@@ -7,6 +7,10 @@ using namespace std;
 
 class WordList {
 public:
+
+  // Default constructor.
+	WordList();
+
   // Read and sort a list of words.
   WordList(string filename);
 

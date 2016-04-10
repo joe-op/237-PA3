@@ -1,8 +1,17 @@
 #include "wordlist.h"
 #include <fstream>
 
+
 /*
  * WordList() - Default constructor for WordList
+ * Input: none
+ * Output: none
+ */
+WordList::WordList() {
+	list_size = 0;
+}
+/*
+ * WordList() - Constructor for WordList
  * Description:
  *    Takes a string giving the filepath of a text file
  *     with a list of words.
@@ -64,7 +73,7 @@ bool WordList::binary_search(const string &target, int begin, int end) const {
 	else if (compare < 0) {
 		return binary_search(target, begin, mid);
 	}
-	else if (compare > 0) {
+	else {
 		return binary_search(target, mid, end);
 	}
 }

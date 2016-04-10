@@ -2,6 +2,7 @@
 #include "board.h"
 #include "wordlist.h"
 #include <list>
+#include <string>
 
 /* game(string wordfile) - Constructor for game
  * Description:
