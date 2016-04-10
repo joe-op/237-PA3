@@ -30,10 +30,27 @@ game::game(string wordfile) {
 }
 /*
  * take_turn() - play one turn of the game
+ * Displays the board and requests input.
+ * If user enters 'q', the game ends; otherwise,
+ * the word is checked and score and 
+ * misses are modified appropriately.
  * Input: none
  * Output: none
  */
 void game::take_turn() {
+	board.draw(cout);
+	// Display score, misses, words found so far
+	cout << "Current score: " << score << endl;
+	cout << "Misses: " << misses << "/" << NUM_TRIES << endl;
+	if (score > 0) {
+		cout << "Found words:" << endl;
+		list<string>::iterator curr;
+		for (curr = usedwords.begin(); curr != usedwords.end(); ++curr) {
+			cout << *curr << endl;
+		}
+	}
+
+	cout << "Enter 'q' to quit." << endl;
 	string input;
 	cout << "Enter a word:" << endl;
 	cin >> input;
@@ -108,7 +125,7 @@ bool game::word_new(string word) const {
 			return false;
 		}
 	}
-	return false;
+	return true;
 }
 /*
  * word_on_board() - check if the word is on the board
