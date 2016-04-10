@@ -74,8 +74,12 @@
     <Text Include="wordlist.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="board.cpp" />
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="letters.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="position.cpp" />
+    <ClCompile Include="wordlist.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
