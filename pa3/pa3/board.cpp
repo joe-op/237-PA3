@@ -128,6 +128,7 @@ bool Board::word_search(const string &target, int tfrom, Position p) const
 	// Return false if the current Position does not contain the current
 	// letter.
 	// Return true if it does and this is the last letter
+	// TODO: This check might replace the previous base case
 	if (letter_at(p) != target.at(tfrom)) {
 		return false;
 	}
