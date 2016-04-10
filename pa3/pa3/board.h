@@ -37,6 +37,15 @@ private:
   list<Position> adjacent(Position p) const;
 
   char letters[BOARD_SIZE][BOARD_SIZE];
+
+  // Helper function for draw
+  // Returns a string for the lines before, in between,
+  // and after the letters
+  string draw_line_str() const;
+  // Helper function for draw
+  // Returns a string corresponding to
+  // one row of letters
+  string draw_row_str(int y) const;
 };
 
 #endif
