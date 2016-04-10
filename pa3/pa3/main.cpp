@@ -11,7 +11,9 @@
 
 int main()
 {
-    srand(time(NULL));
+    // Seed the random number generator
+	srand(time(NULL));
+	// Introduction
     cout << "WordGrid by Joe Opseth & Jens Myklebust - CS237 PA3" << endl;
     cout << "Bonus features implemented: none" << endl;
     cout << "Loading wordlist.txt . . . ";
