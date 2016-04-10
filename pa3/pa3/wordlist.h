@@ -20,6 +20,9 @@ private:
   // Recursive helper for the contains method.
   bool binary_search(const string &target, int begin, int end) const;
 
+  // Number of words in the list
+  int list_size;
+
   // The words themselves.
   vector<string> words;
 };
