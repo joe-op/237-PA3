@@ -2,7 +2,7 @@
 #include "board.h"
 #include "wordlist.h"
 #include <list>
-#include <string>
+#include <string>	
 
 /* game(string wordfile) - Constructor for game
  * Description:
@@ -54,20 +54,30 @@ void game::take_turn() {
 	string input;
 	cout << "Enter a word:" << endl;
 	cin >> input;
-	if (!word_in_list(input)) {
-		cout << "That's not a word!" << endl;
-		misses++;
+	if (input == "q") {
+		misses = NUM_TRIES;
 	}
-	else if (!word_new(input)) {
-		cout << "You already used that word!" << endl;
-		misses++;
-	}
-	else if (!word_on_board(input)) {
-		cout << "That's not on the board!" << endl;
-		misses++;
-	} else {
-		cout << "Correct!" << endl;
-		score = score + input.length()^2;
+	else {
+		for (int i = 0; input[i] != 0; i++) {
+			if (input[i] <= 122 && input[i] >= 97)
+				input[i] -= 32;
+		}
+		if (!word_in_list(input)) {
+			cout << "That's not a word!" << endl;
+			misses++;
+		}
+		else if (!word_new(input)) {
+			cout << "You already used that word!" << endl;
+			misses++;
+		}
+		else if (!word_on_board(input)) {
+			cout << "That's not on the board!" << endl;
+			misses++;
+		}
+		else {
+			cout << "Correct!" << endl;
+			score = score + input.length() ^ 2;
+		}
 	}
 }
 /*
@@ -104,6 +114,7 @@ bool game::is_ended() const {
 void game::game_over() const {
 	cout << "Thanks for playing!" << endl;
 	cout << "Score: " << score << endl;
+	pause_237();
 }
 /*
  * word_in_list() - check if the word is a real word
@@ -134,4 +145,45 @@ bool game::word_new(string word) const {
  */
 bool game::word_on_board(string word) const {
 	return board.contains(word);
+}
+/* pause_237() - Wait for the user to press ENTER.
+*
+* Description:
+* Optionally read and discard the remainder of the user's last
+* line of input. Then, prompt the user to press ENTER, then
+* read and discard another line of input.
+*
+* Inputs:
+* bool have_newline:
+* True if the user has already entered a newline that the
+* program has not yet read. If true, this function first
+* discards remaining input up to and including that newline.
+*
+* Reads two lines from standard input if have_newline is true,
+* one line if it is false. Lines are assumed to be less than
+* two hundred characters long.
+*
+* Outputs:
+* No return value.
+*
+* Prints a prompt to standard output.
+*
+* Notes:
+* This function is intended to be used at the end of a program,
+* just before returning from main(). Reading another line of
+* input prevents the console window from closing immediately.
+*
+* In general, have_newline should be true if the last user input
+* from cin used the extraction operator (>>), and false if there
+* has been no user input or if the last input used getline().
+*/
+void pause_237(bool have_newline)
+{
+	if (have_newline) {
+		// Ignore the newline after the user's previous input. 
+		cin.ignore(200, '\n');
+	}
+	// Prompt for the user to press ENTER, then wait for a newline. 
+	cout << endl << "Press ENTER to continue." << endl;
+	cin.ignore(200, '\n');
 }

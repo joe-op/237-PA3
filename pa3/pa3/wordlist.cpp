@@ -66,7 +66,7 @@ bool WordList::binary_search(const string &target, int begin, int end) const {
 	int mid = (end + begin) / 2;
 	const char *target_chars = target.c_str();
 	const char *mid_chars = words.at(mid).c_str();
-	int compare = strcmp(mid_chars, mid_chars);
+	int compare = strcmp(target_chars, mid_chars);
 	if (compare == 0) {
 		return true;
 	} // if word is not found, search again
