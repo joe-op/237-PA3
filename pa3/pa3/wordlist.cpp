@@ -40,7 +40,7 @@ int WordList::size() const {
  * Output: bool
  */
 bool WordList::contains(const string &word) const {
-
+	return binary_search(word, 0, list_size - 1);
 }
 /*
  * binary_search() - Searches for a word in the WordList

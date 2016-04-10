@@ -15,12 +15,6 @@ public:
 
     void take_turn();
 
-    // Check whether the word is valid.
-	// 1) In the word list
-	// 2) On the board
-	// 3) Not used before
-	bool check_word(string word) const;
-
     int get_score() const;
     int get_misses() const;
 
@@ -30,6 +24,15 @@ public:
     // Print the game over message and score.
     void game_over() const;
 private:
+
+	// Check whether the word is valid.
+	// 1) In the word list
+	bool word_in_list(string word) const;
+	// 2) Not used before
+	bool word_new(string word) const;
+	// 3) On the board
+	bool word_on_board(string word) const;
+
     int score;
     int misses;
 
